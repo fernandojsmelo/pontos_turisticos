@@ -4,7 +4,6 @@ Django==2.1.1
 django-filter==2.0.0
 djangorestframework==3.8.2
 Pillow==5.2.0
-pkg-resources
 python-decouple==3.1
 pytz==2018.5
 static3==0.7.0
