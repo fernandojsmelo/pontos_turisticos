@@ -128,8 +128,8 @@ MEDIA_ROOT = '/home/fernando/pontos_turisticos/imagens/'
 
 MEDIA_URL = '/media/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS':('django_filters.rest_framework.DjangoFilterBackend',)
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_FILTER_BACKENDS':('django_filters.rest_framework.DjangoFilterBackend',)
+# }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
