@@ -15,8 +15,8 @@ class PontoTuristicoViewSet(ModelViewSet):
     """
     serializer_class = PontoTuristicoSerializer
     filter_backends = (SearchFilter,)
-    permission_classes = (DjangoModelPermissions,)
-    authentication_classes = (TokenAuthentication,)
+    # permission_classes = (DjangoModelPermissions,)
+    # authentication_classes = (TokenAuthentication,)
     search_fields = ('nome', 'descricao', 'endereco__linha1')
     lookup_field = 'nome'
 
