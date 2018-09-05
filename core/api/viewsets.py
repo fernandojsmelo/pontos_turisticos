@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
@@ -18,7 +19,7 @@ class PontoTuristicoViewSet(ModelViewSet):
     # permission_classes = (DjangoModelPermissions,)
     # authentication_classes = (TokenAuthentication,)
     search_fields = ('nome', 'descricao', 'endereco__linha1')
-    lookup_field = 'nome'
+    lookup_field = 'id'
 
     def get_queryset(self):
         id = self.request.query_params.get(('id', None))
@@ -34,7 +35,7 @@ class PontoTuristicoViewSet(ModelViewSet):
             queryset = PontoTuristico.objects.filter(nome=nome)
 
         if descricao:
-            queryset = PontoTuristico.objects.filter(descricao=descricao)
+            queryset = queryset.filter(descricao__iexact=descricao)
 
         return queryset
 
@@ -63,3 +64,15 @@ class PontoTuristicoViewSet(ModelViewSet):
     @action(methods=['get'], detail=False)
     def teste(self, request):
         pass
+
+    @action(methods=['post'], detail=True)
+    def associa_atracoes(self, request, id):
+        atracoes = request.data['ids']
+
+        ponto = PontoTuristico.objects.get(id=id)
+
+        ponto.atracoes.set(atracoes)
+
+        ponto.save()
+
+        return HttpResponse('OK')
